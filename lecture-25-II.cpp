@@ -1,10 +1,9 @@
-#include<iostream
+#include <iostream>
 using namespace std;
 
 class student
 {
-    public:
-
+public:
     string name;
     int mids;
     float ends;
@@ -13,21 +12,18 @@ class student
 
 class vehicle
 {
-    public:
+public:
     string car_name;
     string tyre_name;
-    int nummber_of_tyres;
+    int number_of_tyres; // Corrected the variable name
     int Number_of_seats;
 };
 
 int main()
 {
-
-    student a,b,c;
-
-    int d,e,f;
-
-    vehicle hydni , suzuki , ferrari;
+    student a, b, c;
+    int d, e, f;
+    vehicle hyundai, suzuki, ferrari; // Corrected the variable name
 
     return 0;
 }
