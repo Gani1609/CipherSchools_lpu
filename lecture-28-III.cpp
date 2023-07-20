@@ -1,84 +1,68 @@
-#include<iosteam>
+#include <iostream>
 using namespace std;
 
 class node
 {
-    public:
-
+public:
     int data;
-    node * next;
+    node* next;
 
     node(int data_input)
     {
-        this->data =data_input;
+        this->data = data_input;
         this->next = NULL;
     }
 };
 
-void printnode(node * &node)
+void printnode(node* nd)
 {
-    cout<<"value " <<node->data;
-    cout<<"address"<<node->next;
+    cout << "value: " << nd->data;
+    cout << ", address: " << nd << endl;
 }
 
-void printlinkedist(node * &head)
+void printlinkedist(node* head)
 {
-    if(head==NULL)
+    if (head == NULL)
     {
-        cout<<"the linked list is still empty!!"<<endl;
-        return ;
+        cout << "The linked list is empty!!" << endl;
+        return;
     }
 
-    node *temp;
-    temp=head;
+    node* temp = head;
 
-    while(temp!=NULL)
+    while (temp != NULL)
     {
-        cout<<temp->data<<"-->";
-        temp=temp->next;
+        cout << temp->data;
+        if (temp->next != NULL)
+            cout << "-->";
+        temp = temp->next;
     }
+
+    cout << endl;
 }
 
 int main()
 {
-
-    node*head;
+    node* head = NULL;
 
     printlinkedist(head);
 
-    node * node1 = new node(5);
+    node* node1 = new node(5);
     head = node1;
     printlinkedist(head);
-    cout<<endl;
 
-    node * node2 = new node(7);
+    node* node2 = new node(7);
     node1->next = node2;
     printlinkedist(head);
-    cout<<endl;
 
-    node * node3 = new node(8);
+    node* node3 = new node(8);
     node2->next = node3;
     printlinkedist(head);
-    cout<<endl;
 
-    // cout<<node1->data;
-    // printnode(node1);
-    // printnode(node2);
-    // printnode(node3);
-
-    
-    
-
-    // printnode(node1);
-    // cout<<endl<<node2;
-    // printnode(node2);
-    // cout<<endl<<node3;
-    // printnode(node3);
-    // printnode(node1->next);
-    // printnode(node1->next->next);
-
-    // node * head;
-    // head = node1;
+    // Don't forget to free the allocated memory
+    delete node1;
+    delete node2;
+    delete node3;
 
     return 0;
 }
