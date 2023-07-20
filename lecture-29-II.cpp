@@ -1,95 +1,95 @@
-#include<iosteam>
+#include <iostream>
 using namespace std;
 
 class node
 {
-    public:
-
+public:
     int data;
-    node * next;
+    node* next;
 
     node(int data_input)
     {
-        this->data =data_input;
+        this->data = data_input;
         this->next = NULL;
     }
 };
 
-void printnode(node * &node)
+void printnode(node* nd)
 {
-    cout<<"value " <<node->data;
-    cout<<"address"<<node->next;
+    cout << "value: " << nd->data;
+    cout << ", address: " << nd << endl;
 }
 
-void printlinkedist(node * &head)
+void printlinkedist(node* head)
 {
-    if(head==NULL)
+    if (head == NULL)
     {
-        cout<<"the linked list is still empty!!"<<endl;
-        return ;
+        cout << "the linked list is still empty!!" << endl;
+        return;
     }
 
-    node *temp;
-    temp=head;
+    node* temp = head;
 
-    while(temp!=NULL)
+    while (temp != NULL)
     {
-        cout<<temp->data<<"-->";
-        temp=temp->next;
+        cout << temp->data;
+        if (temp->next != NULL)
+            cout << "-->";
+        temp = temp->next;
     }
-    cout<<endl;
+
+    cout << endl;
 }
 
-void Insertstart(node *head,int data)
+void Insertstart(node* &head, int data)
 {
-    node * temp=new node(data);
+    node* temp = new node(data);
 
-    if(head==NULL)
+    if (head == NULL)
     {
         head = temp;
         return;
     }
 
-    temp->next=head;
-    head=temp;
+    temp->next = head;
+    head = temp;
 }
 
-void Insertend(node *&head,int data)
+void Insertend(node* &head, int data)
 {
-    node *temp=new node(data);
+    node* temp = new node(data);
 
-
-    if(head==NULL)
+    if (head == NULL)
     {
         head = temp;
         return;
     }
 
-    node *end;
-    end = head;
+    node* end = head;
 
-    while(end->next!=NULL)
+    while (end->next != NULL)
     {
         end = end->next;
     }
 
-     end->next = temp;
+    end->next = temp;
 }
 
-void Insertmiddleafterwhichelement(node *& head,int location,int data)
+void Insertmiddleafterwhichelement(node* &head, int location, int data)
 {
-    node *temp= new node(data);
+    node* temp = new node(data);
 
-    node *var = head;
+    node* var = head;
 
-    while(var->data!= location)
+    while (var != NULL && var->data != location)
     {
         var = var->next;
-        if(var==NULL)
-        {
-            cout<<"the location doestn't exist, check the location again"<<endl;
-            return;
-        }
+    }
+
+    if (var == NULL)
+    {
+        cout << "The location doesn't exist, check the location again" << endl;
+        return;
     }
 
     temp->next = var->next;
@@ -98,26 +98,32 @@ void Insertmiddleafterwhichelement(node *& head,int location,int data)
 
 int main()
 {
-   node*head;
+    node* head = NULL;
 
-    Insertend(head,5);
-    Insertend(head,7);
-    Insertend(head,8);
+    Insertend(head, 5);
+    Insertend(head, 7);
+    Insertend(head, 8);
 
-    Insertstart(head,3);
-    // printlinkedist(head);
-    Insertstart(head,2);
-    // printlinkedist(head);
-    Insertstart(head,9);
-    Insertstart(head,10);
+    Insertstart(head, 3);
+    Insertstart(head, 2);
+    Insertstart(head, 9);
+    Insertstart(head, 10);
 
     printlinkedist(head);
 
-    Insertmiddleafterwhichelement(head,3,4);
-    Insertmiddleafterwhichelement(head,5,6);
-    Insertmiddleafterwhichelement(head,100,101);
+    Insertmiddleafterwhichelement(head, 3, 4);
+    Insertmiddleafterwhichelement(head, 5, 6);
+    Insertmiddleafterwhichelement(head, 100, 101);
     printlinkedist(head);
 
+    // Don't forget to free the allocated memory
+    node* current = head;
+    while (current != NULL)
+    {
+        node* next_node = current->next;
+        delete current;
+        current = next_node;
+    }
 
     return 0;
 }
