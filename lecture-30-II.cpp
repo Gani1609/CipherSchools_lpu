@@ -3,64 +3,60 @@ using namespace std;
 
 class Queue
 {
-    public:
-
+public:
     int queue[1000];
     int size;
     int front;
     int rear;
     int max_capacity;
 
-
     Queue()
     {
         this->front = 0;
         this->rear = -1;
-        this->max_capacity=1000;
-        this->size=0;
+        this->max_capacity = 1000;
+        this->size = 0;
     }
 
-    enqueue(int data)
+    void enqueue(int data)
     {
-        if(size==max_capacity)
+        if (size == max_capacity)
         {
-            cout<<"maximum capacity has been reached"<<endl;
+            cout << "maximum capacity has been reached" << endl;
             return;
         }
 
-        rear = (rear+1)%capacity;
-        queue[rear]=data;
+        rear = (rear + 1) % max_capacity;
+        queue[rear] = data;
         size++;
-
     }
 
     void dequeue()
     {
-        if(size==0)
+        if (size == 0)
         {
-            cout<<"the size of the queue is 0 and there are no more elements"<<endl;
+            cout << "the size of the queue is 0 and there are no more elements" << endl;
             return;
         }
 
-        cout<<"the element to be debequed is "<<queue[front];
-        front++;
+        cout << "the element to be dequeued is " << queue[front] << endl;
+        front = (front + 1) % max_capacity;
         size--;
     }
 
     void peekqueue()
     {
-        cout<<"the element at the front of thw queue is "<<queue[front];
+        cout << "the element at the front of the queue is " << queue[front] << endl;
     }
 
-    void dizeofqueue()
+    void sizeofqueue()
     {
-        cout<<"the queue currently has"<<size<<"elemt in it "<<endl;
+        cout << "the queue currently has " << size << " element(s) in it" << endl;
     }
 };
 
 int main()
 {
-
     Queue q;
     q.enqueue(5);
     q.enqueue(6);
@@ -76,7 +72,7 @@ int main()
     q.dequeue();
 
     q.peekqueue();
-    
+
     q.dequeue();
 
     return 0;
